@@ -10,7 +10,7 @@ public class extractData {
 
    Student[] studentPref;
    String[] timeSlots;
-   String[] rooms;
+   Room[] rooms;
    String[] professors;
    String contraints;
    String prefrence;
@@ -54,14 +54,7 @@ public class extractData {
 
    }
 
-   public void storeContraints() {
-      try {
-         br = new BufferedReader(new FileReader(this.contraints));
-      } catch (IOException e) {
-         System.out.println(e);
-      }
-
-      // timeslots
+   public void storeTime() {
       try {
          String line = br.readLine();
 
@@ -82,9 +75,40 @@ public class extractData {
       } catch (IOException ioe) {
          return;
       }
+   }
 
-      // classes
+   private void storeRoom() {
+      try {
+         String line = br.readLine();
 
+         String[] frag = line.split("\t");
+         int l = Integer.parseInt(frag[1]);
+         System.out.println(l);
+         rooms = new Room[l];
+         int idx = 0;
+
+         while (idx < l) {
+            line = br.readLine();
+            frag = line.split("\t");
+            System.out.println(frag[0] + " " + frag[1]);
+            rooms[idx] = new Room(Integer.parseInt(frag[1]), frag[0]);
+            idx++;
+         }
+
+      } catch (IOException ioe) {
+         return;
+      }
+   }
+
+   public void storeContraints() {
+      try {
+         br = new BufferedReader(new FileReader(this.contraints));
+      } catch (IOException e) {
+         System.out.println(e);
+      }
+
+      storeTime();
+      storeRoom();
       // Teachers
    }
 
