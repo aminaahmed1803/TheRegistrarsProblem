@@ -1,9 +1,11 @@
 public class Professor {
-    private int[] courses;
-    public Professor(int[] crs) {
+
+    private String courses;
+    private int id;
+
+    public Professor(String id, String crs) {
         this.courses = crs;
-    }
-    public int[] getCourses() {
-        return this.courses;
+        System.out.println(id);
+        this.id = Integer.parseInt(id);
     }
 }

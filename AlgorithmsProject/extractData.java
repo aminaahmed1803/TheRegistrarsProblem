@@ -11,10 +11,11 @@ public class extractData {
    Student[] studentPref;
    String[] timeSlots;
    Room[] rooms;
-   String[] professors;
+   Professor[] professors;
    String contraints;
    String prefrence;
    BufferedReader br;
+   int classes;
 
    public extractData(String prefs, String conts) {
 
@@ -83,15 +84,42 @@ public class extractData {
 
          String[] frag = line.split("\t");
          int l = Integer.parseInt(frag[1]);
-         System.out.println(l);
+         // System.out.println(l);
          rooms = new Room[l];
          int idx = 0;
 
          while (idx < l) {
             line = br.readLine();
             frag = line.split("\t");
-            System.out.println(frag[0] + " " + frag[1]);
+            // System.out.println(frag[0] + " " + frag[1]);
             rooms[idx] = new Room(Integer.parseInt(frag[1]), frag[0]);
+            idx++;
+         }
+
+      } catch (IOException ioe) {
+         return;
+      }
+   }
+
+   private void storeProf() {
+      try {
+         String line = br.readLine();
+         String[] frag = line.split("\t");
+         int l = Integer.parseInt(frag[1]);
+         classes = Integer.parseInt(frag[1]);
+
+         line = br.readLine();
+         frag = line.split("\t");
+         l = Integer.parseInt(frag[1]);
+         // System.out.println(l);
+         professors = new Professor[l];
+         int idx = 0;
+
+         while (idx < l) {
+            line = br.readLine();
+            frag = line.split("\t");
+            // System.out.println(frag[0] + " " + frag[1] + "len: " + frag.length);
+            professors[idx] = new Professor(frag[0], frag[1]);
             idx++;
          }
 
@@ -109,6 +137,8 @@ public class extractData {
 
       storeTime();
       storeRoom();
+      storeProf();
+
       // Teachers
    }
 
