@@ -23,7 +23,10 @@ public class Student {
 
     @Override
     public String toString() {
-        return "id: " + this.id + " preferences: " + this.preferences;
-
+        String ret = "id: " + this.id + " preferences: ";
+        for (int i = 0; i < this.preferences.length; i++) {
+            ret = ret + this.preferences[i] + " ";
+        }
+        return ret;
     }
 }

@@ -61,15 +61,38 @@ public class extractData {
          System.out.println(e);
       }
 
+      // timeslots
+      try {
+         String line = br.readLine();
+
+         String[] frag = line.split("\t");
+         int l = Integer.parseInt(frag[1]);
+         // System.out.println(l);
+         timeSlots = new String[l];
+         int idx = 0;
+
+         while (idx < l) {
+            line = br.readLine();
+            frag = line.split("\t");
+            // System.out.println(frag[1]);
+            timeSlots[idx] = frag[1];
+            idx++;
+         }
+
+      } catch (IOException ioe) {
+         return;
+      }
+
+      // classes
+
+      // Teachers
    }
 
-   /*
-    * public void printPref() {
-    * for (int i = 0; i < studentPref.length; i++) {
-    * System.out.println(studentPref[i].toString());
-    * }
-    * }
-    */
+   public void printPref() {
+      for (int i = 0; i < studentPref.length; i++) {
+         System.out.println(studentPref[i].toString());
+      }
+   }
 
    public static void main(String[] args) {
       if (args.length != 2) {
@@ -78,8 +101,10 @@ public class extractData {
       String prefrences = args[0];
       String constrains = args[1];
       extractData e = new extractData(prefrences, constrains);
-      e.storePref();
+      // e.storePref();
       // e.printPref();
+
+      e.storeContraints();
 
    }
 
