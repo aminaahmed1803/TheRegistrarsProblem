@@ -21,40 +21,65 @@ public class extractData {
       contraints = conts;
       prefrence = prefs;
 
-      try {
-         br = new BufferedReader(new FileReader(prefrence));
-      } catch (IOException e) {
-         System.out.println(e);
-      }
-
-      try {
-         br = new BufferedReader(new FileReader(contraints));
-      } catch (IOException e) {
-         System.out.println(e);
-      }
-
    }
 
    public void storePref() {
 
-      int l = 1;
-      while (true) {
-         try {
-            String line = br.readLine();
-            if (l == 1) {
-               l = Integer.parseInt(line);
-               studentPref = new Student[l];
-            } else {
-               String[] frag = line.split(" ");
-            }
-         } catch (IOException ioe) {
-            return;
+      try {
+         br = new BufferedReader(new FileReader(this.prefrence));
+      } catch (IOException e) {
+         System.out.println(e);
+      }
+
+      try {
+         String line = br.readLine();
+
+         String[] frag = line.split("\t");
+         // System.out.println(frag[1]);
+         int l = Integer.parseInt(frag[1]);
+         studentPref = new Student[l];
+         int idx = 0;
+
+         while (idx < l) {
+            line = br.readLine();
+            frag = line.split("\t");
+            // System.out.println(frag.length);
+            studentPref[idx] = new Student(frag[0], frag[1]);
+            idx++;
          }
+
+      } catch (IOException ioe) {
+         return;
       }
 
    }
 
    public void storeContraints() {
+      try {
+         br = new BufferedReader(new FileReader(this.contraints));
+      } catch (IOException e) {
+         System.out.println(e);
+      }
+
+   }
+
+   /*
+    * public void printPref() {
+    * for (int i = 0; i < studentPref.length; i++) {
+    * System.out.println(studentPref[i].toString());
+    * }
+    * }
+    */
+
+   public static void main(String[] args) {
+      if (args.length != 2) {
+         System.out.println("Usage: <prefences> <constraints>");
+      }
+      String prefrences = args[0];
+      String constrains = args[1];
+      extractData e = new extractData(prefrences, constrains);
+      e.storePref();
+      // e.printPref();
 
    }
 
