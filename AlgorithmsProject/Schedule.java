@@ -82,7 +82,7 @@ public class Schedule {
                     // System.out.println("skip");
                     continue;
                 }
-                String prof_id = findCourseById(class_id).professor; // get class using class_id and find the prof for
+                String prof_id = findCourseById(class_id).professor; // class using class_id and find the prof for
                 // System.out.println(class_id + " " + i + " " + j + " " + prof_id); // the
                 // class
                 while (times[j].isTeaching(prof_id)) {
@@ -107,12 +107,14 @@ public class Schedule {
             for (int j = 0; j < student_prefs[i].preferences.size(); j++) {
                 int idx = getCourseIndex(student_prefs[i].preferences.get(j));
                 Course coursePreference = classCounts[idx];
+                // System.out.println(coursePreference.student_ids.size());
                 if (coursePreference.assigned_room.getCapacity() > coursePreference.student_ids.size()) {
 
                     // if there is available room space in the course
                     if (studentHasConflict(student_prefs[i], coursePreference) == false) {
 
                         // if the student is not enrolled in another course at the same time
+                        // coursePreference.students.add(student_prefs[i]); // CHANGE TO ARRAYLIST
                         classCounts[idx].student_ids.add(student_prefs[i].id);
                     }
                 }
@@ -161,7 +163,7 @@ public class Schedule {
         Schedule s = new Schedule(prefrences, constrains);
         s.makeSchedule();
         s.enroll();
-        System.out.println("Course          Room            Teacher         Time            Students");
+        System.out.println("Course\tRoom\tTeacher\tTime\tStudents");
         for (int i = 0; i < s.classCounts.length; i++) {
             System.out.println(s.classCounts[i].toString());
         }
