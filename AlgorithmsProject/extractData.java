@@ -12,6 +12,7 @@ public class extractData {
    String prefrence;
    BufferedReader br;
    int classes;
+   int profs;
 
    public extractData(String prefs, String conts) {
 
@@ -65,10 +66,9 @@ public class extractData {
 
       try {
          String line = br.readLine();
-         System.out.println(line);
+         // System.out.println(line);
          String[] frag = line.split("\t");
          int l = Integer.parseInt(frag[1]);
-         // System.out.println(l);
          timeSlots = new String[l];
          int idx = 0;
 
@@ -84,6 +84,7 @@ public class extractData {
          return null;
       }
 
+      // System.out.println("Done time slots");
       return timeSlots;
    }
 
@@ -111,6 +112,8 @@ public class extractData {
       } catch (IOException ioe) {
          return null;
       }
+      // System.out.println("Done rooms");
+
       return rooms;
    }
 
@@ -118,21 +121,21 @@ public class extractData {
    public String[] storeProf() {
 
       String[] professors;
-
+      // System.out.println("Started");
       try {
          String line = br.readLine();
          String[] frag = line.split("\t");
          int l = Integer.parseInt(frag[1]);
          classes = Integer.parseInt(frag[1]);
+         professors = new String[l];
 
          line = br.readLine();
          frag = line.split("\t");
          l = Integer.parseInt(frag[1]);
-         // System.out.println(l);
-         professors = new String[l];
+         profs = l;
          int idx = 0;
 
-         while (idx < l) {
+         while (idx < classes) {
             line = br.readLine();
             frag = line.split("\t");
             // System.out.println(frag[0] + " " + frag[1] + "len: " + frag.length);
@@ -143,6 +146,8 @@ public class extractData {
       } catch (IOException ioe) {
          return null;
       }
+
+      // System.out.println("done prof");
       return professors;
 
    }
