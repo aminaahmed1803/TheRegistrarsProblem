@@ -1,11 +1,13 @@
 public class Course {
-    private Student[] students;
-    private Professor professor;
-    private int courseNum;
 
-    public Course(int courseNum) {
+    public Student[] students;
+    public int professor;
+    public int courseNum;
+    public String assignmed_room;
+    public String assigned_time;
+
+    public Course(int courseNum, int professor) {
         this.courseNum = courseNum;
-        students = null;
-        professor = null;
+        this.professor = professor;
     }
 }

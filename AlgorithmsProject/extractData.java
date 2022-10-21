@@ -11,7 +11,7 @@ public class extractData {
    Student[] studentPref;
    String[] timeSlots;
    Room[] rooms;
-   Professor[] professors;
+   String[] professors;
    String contraints;
    String prefrence;
    BufferedReader br;
@@ -155,9 +155,8 @@ public class extractData {
       String prefrences = args[0];
       String constrains = args[1];
       extractData e = new extractData(prefrences, constrains);
-      // e.storePref();
-      // e.printPref();
-
+      e.storePref();
+      e.printPref();
       e.storeContraints();
 
    }

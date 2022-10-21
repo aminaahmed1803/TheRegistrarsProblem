@@ -1,7 +1,7 @@
 public class Room {
 
-    private int maxCapacity;
-    private String name;
+    public int maxCapacity;
+    public String name;
 
     public Room(int maxNum, String n) {
         this.maxCapacity = maxNum;
