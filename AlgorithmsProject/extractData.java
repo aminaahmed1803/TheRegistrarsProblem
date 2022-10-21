@@ -65,7 +65,7 @@ public class extractData {
 
       try {
          String line = br.readLine();
-
+         System.out.println(line);
          String[] frag = line.split("\t");
          int l = Integer.parseInt(frag[1]);
          // System.out.println(l);
@@ -150,6 +150,7 @@ public class extractData {
    public static void main(String[] args) {
       if (args.length != 2) {
          System.out.println("Usage: <prefences> <constraints>");
+         return;
       }
       String prefrences = args[0];
       String constrains = args[1];

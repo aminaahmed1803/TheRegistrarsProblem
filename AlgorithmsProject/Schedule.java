@@ -80,13 +80,50 @@ public class Schedule {
         }
     }
 
-    public void enroll() {
+    public void enroll() { // check for student time conflict and room capacity, enroll students
+        for (int i = 0; i < student_prefs.length; i++) {
+            for (int j = 0; j < student_prefs[i].getPreferences().length; j++) {
+                Course coursePreference = findCourseById(student_prefs[j].getPreferences()[j]);
+                if (coursePreference.assigned_room.getCapacity() < coursePreference.students.size()) { // if there is
+                                                                                                       // available room
+                                                                                                       // space in the
+                                                                                                       // course
+                    if (studentHasConflict(student_prefs[i], coursePreference) == false) { // if the student is not
+                                                                                           // enrolled in another course
+                                                                                           // at the same time
+                        coursePreference.students.add(student_prefs[i]); // CHANGE TO ARRAYLIST
+                    }
+                }
+            }
+        }
+    }
 
+    public Course findCourseById(String class_id) {
+        for (int i = 0; i < classCounts.length; i++) {
+            if (class_id == classCounts[i].courseName) {
+                return classCounts[i];
+            }
+        }
+        return null;
+    }
+
+    public boolean studentHasConflict(Student student, Course course) {
+        for (int i = 0; i < classCounts.length; i++) {
+            for (int j = 0; j < classCounts[i].students.length; j++) {
+                if (classCounts[i].students[j] == student) {
+                    if (classCounts[i].assigned_time != course.assigned_time) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public static void main(String[] args) {
         if (args.length != 2) {
             System.out.println("Usage: <prefences> <constraints>");
+            return;
         }
         String prefrences = args[0];
         String constrains = args[1];
