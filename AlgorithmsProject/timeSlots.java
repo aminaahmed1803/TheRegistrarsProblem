@@ -22,7 +22,7 @@ public class timeSlots {
 
       // iterates through availbale students
       // finds most famous class
-      remClass();
+      remClass(00);
       return 0;
    }
 

@@ -8,10 +8,6 @@ import java.util.stream.*;
 
 public class extractData {
 
-   Student[] studentPref;
-   String[] timeSlots;
-   Room[] rooms;
-   String[] professors;
    String contraints;
    String prefrence;
    BufferedReader br;
@@ -24,8 +20,9 @@ public class extractData {
 
    }
 
-   public void storePref() {
+   public Student[] storePref() {
 
+      Student[] studentPref;
       try {
          br = new BufferedReader(new FileReader(this.prefrence));
       } catch (IOException e) {
@@ -50,12 +47,22 @@ public class extractData {
          }
 
       } catch (IOException ioe) {
-         return;
+         return null;
       }
-
+      return studentPref;
    }
 
-   public void storeTime() {
+   // first
+   public String[] storeTime() {
+
+      String[] timeSlots;
+
+      try {
+         br = new BufferedReader(new FileReader(this.contraints));
+      } catch (IOException e) {
+         System.out.println(e);
+      }
+
       try {
          String line = br.readLine();
 
@@ -74,11 +81,16 @@ public class extractData {
          }
 
       } catch (IOException ioe) {
-         return;
+         return null;
       }
+
+      return timeSlots;
    }
 
-   private void storeRoom() {
+   // second
+   public Room[] storeRoom() {
+
+      Room[] rooms;
       try {
          String line = br.readLine();
 
@@ -97,11 +109,16 @@ public class extractData {
          }
 
       } catch (IOException ioe) {
-         return;
+         return null;
       }
+      return rooms;
    }
 
-   private void storeProf() {
+   // third
+   public String[] storeProf() {
+
+      String[] professors;
+
       try {
          String line = br.readLine();
          String[] frag = line.split("\t");
@@ -112,40 +129,22 @@ public class extractData {
          frag = line.split("\t");
          l = Integer.parseInt(frag[1]);
          // System.out.println(l);
-         professors = new Professor[l];
+         professors = new String[l];
          int idx = 0;
 
          while (idx < l) {
             line = br.readLine();
             frag = line.split("\t");
             // System.out.println(frag[0] + " " + frag[1] + "len: " + frag.length);
-            professors[idx] = new Professor(frag[0], frag[1]);
+            professors[idx] = frag[0] + " " + frag[1]; // 0 = courses, 1 = prof id
             idx++;
          }
 
       } catch (IOException ioe) {
-         return;
+         return null;
       }
-   }
+      return professors;
 
-   public void storeContraints() {
-      try {
-         br = new BufferedReader(new FileReader(this.contraints));
-      } catch (IOException e) {
-         System.out.println(e);
-      }
-
-      storeTime();
-      storeRoom();
-      storeProf();
-
-      // Teachers
-   }
-
-   public void printPref() {
-      for (int i = 0; i < studentPref.length; i++) {
-         System.out.println(studentPref[i].toString());
-      }
    }
 
    public static void main(String[] args) {
@@ -156,8 +155,6 @@ public class extractData {
       String constrains = args[1];
       extractData e = new extractData(prefrences, constrains);
       e.storePref();
-      e.printPref();
-      e.storeContraints();
 
    }
 
