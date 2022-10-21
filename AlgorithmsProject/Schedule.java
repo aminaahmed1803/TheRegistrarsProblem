@@ -15,15 +15,49 @@ public class Schedule {
     // map of professors to courseID
     // HashMap<string,string> prof_courses;
 
-    private void fillCounts() {
+    private void fillStruc(String prefs, String conts) {
 
-        // classes in classCounts
+        // student pref
+        extractData e = new extractData(prefs, conts);
+        student_prefs = e.storePref();
+
+        // intialize time
+        String[] time_data = e.storeTime();
+        times = new timeSlots[time_data.length];
+        for (int i = 0; i < time_data.length; i++) {
+            times[i].name = time_data[i];
+        }
+
+        // intialize rooms
+        Room[] temp = e.storeRoom(); // sort this
+        rooms = new Room[temp.length];
+        for (int i = 0; i < temp.length; i++) {
+            int size = 0;
+            int idx = 0;
+            for (int j = 0; j < temp.length; i++) {
+                if (temp[j].maxCapacity > size) {
+                    size = temp[j].maxCapacity;
+                    idx = j;
+                    temp[j].maxCapacity = -1;
+                }
+            }
+            rooms[i].maxCapacity = size;
+            rooms[i].name = temp[idx].name;
+        }
+
         // prof of those classes in classCounts
+        String[] prof_data = e.storeProf();
+        for (int i = 0; i < classCounts.length; i++) {
+            String[] frag = prof_data[i].split("\t");
+            classCounts[i] = new Course();
+            classCounts[i].courseNum = frag[0];
+            classCounts[i].professor = frag[1];
+        }
 
     }
 
-    public Schedule() {
-
+    public Schedule(String prefs, String conts) {
+        fillStruc(prefs, conts);
     }
 
     public void makeSchedule() {
@@ -47,6 +81,16 @@ public class Schedule {
     }
 
     public void enroll() {
+
+    }
+
+    public static void main(String[] args) {
+        if (args.length != 2) {
+            System.out.println("Usage: <prefences> <constraints>");
+        }
+        String prefrences = args[0];
+        String constrains = args[1];
+        Schedule e = new Schedule(prefrences, constrains);
 
     }
 }

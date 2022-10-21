@@ -22,6 +22,7 @@ public class timeSlots {
 
    }
 
+<<<<<<< HEAD
    public String mostFameClass() {
       HashMap<String,Integer> course_count = new HashMap<String, Integer>();
       for(int i = 0; i < availableStudents.length; i++){
@@ -36,6 +37,14 @@ public class timeSlots {
 
       this.remClass(maxCourse);
       return maxCourse;
+=======
+   public int mostFameClass() {
+
+      // iterates through availbale students
+      // finds most famous class
+      remClass(00);
+      return 0;
+>>>>>>> 454210c490605085df80a508cb704207593ce3d9
    }
 
    public void remClass(String class_id) {
