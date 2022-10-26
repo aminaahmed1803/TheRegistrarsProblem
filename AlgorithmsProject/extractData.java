@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.stream.*;
 
 public class extractData {
@@ -13,6 +14,7 @@ public class extractData {
    BufferedReader br;
    int classes;
    int profs;
+   private String roomsTemp;
 
    public extractData(String prefs, String conts) {
 
@@ -54,9 +56,9 @@ public class extractData {
    }
 
    // first
-   public String[] storeTime() {
+   public ArrayList<Integer> storeTime() {
 
-      String[] timeSlots;
+      ArrayList<Integer> timeSlots;
 
       try {
          br = new BufferedReader(new FileReader(this.contraints));
@@ -68,17 +70,42 @@ public class extractData {
          String line = br.readLine();
          // System.out.println(line);
          String[] frag = line.split("\t");
-         int l = Integer.parseInt(frag[1]);
-         timeSlots = new String[l];
+         int l = Integer.parseInt(frag[1]); //Store number of class times
+         timeSlots = new ArrayList<Integer>(l);
          int idx = 0;
 
-         while (idx < l) {
-            line = br.readLine();
+         line = br.readLine();
+         if(line.contains("Rooms")){
             frag = line.split("\t");
-            // System.out.println(frag[1]);
-            timeSlots[idx] = frag[1];
+            this.roomsTemp = frag[1];
+            for(int i = 1; i < l+1; i++){
+               timeSlots.add(i);
+            }
+         } else{
+            frag = line.split("\t");
+            timeSlots.set(idx, Integer.parseInt(frag[0]));
             idx++;
+            while (idx < l) {
+               line = br.readLine();
+               frag = line.split("\t");
+               timeSlots.set(idx, Integer.parseInt(frag[0]));
+               System.out.println(timeSlots.get(idx));
+               idx++;
+            }
          }
+         // while (idx < l) {
+         //    line = br.readLine();
+         //    if(line.contains("Rooms")){
+         //       for(int i = 1; i < l+1; i++){
+         //          timeSlots.add(i);
+         //       }
+         //       break;
+         //    }
+         //    frag = line.split("\t");
+         //    // System.out.println(frag[1]);
+         //    timeSlots.set(idx, Integer.parseInt(frag[0]));
+         //    idx++;
+         // }
 
       } catch (IOException ioe) {
          return null;
@@ -92,18 +119,23 @@ public class extractData {
    public Room[] storeRoom() {
 
       Room[] rooms;
+      
       try {
-         String line = br.readLine();
-
-         String[] frag = line.split("\t");
-         int l = Integer.parseInt(frag[1]);
-         // System.out.println(l);
+         String line;
+         int l;
+         if(this.roomsTemp != null){
+            l = Integer.parseInt(this.roomsTemp);
+         } else{
+            line = br.readLine();
+            String[] frag = line.split("\t");
+            l = Integer.parseInt(frag[1]);
+         }
          rooms = new Room[l];
          int idx = 0;
 
          while (idx < l) {
             line = br.readLine();
-            frag = line.split("\t");
+            String[] frag = line.split("\t");
             // System.out.println(frag[0] + " " + frag[1]);
             rooms[idx] = new Room(Integer.parseInt(frag[1]), frag[0]);
             idx++;
@@ -112,8 +144,6 @@ public class extractData {
       } catch (IOException ioe) {
          return null;
       }
-      // System.out.println("Done rooms");
-
       return rooms;
    }
 

@@ -9,7 +9,7 @@ public class timeSlots {
 
    public ArrayList<String> profs_teaching;
 
-   public String name;
+   public Integer id;
 
    public timeSlots() {
       profs_teaching = new ArrayList<>();
