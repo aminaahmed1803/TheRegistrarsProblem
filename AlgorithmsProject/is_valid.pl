@@ -59,9 +59,13 @@ while (<SCHED>) {
 			exit 1;
 		} else {
 			my $course = $1;
+			print("Course in schedule is set as $course \n");
 			my $room = $2;
+			print("Room in schedule is set as $room \n");
 			my $teacher = $3;
+			print("Teacher in schedule is set as $teacher\n");
 			my $time = $4;
+			print("Teacher in schedule is set as $time\n");
 			my $stus = $5;
 			if ($stus !~ /^(\d+ )*(\d+)?$/) {
 				print "Students have incorrect format.\n";
