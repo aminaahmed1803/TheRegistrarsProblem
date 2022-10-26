@@ -16,7 +16,7 @@ public class Course {
     public String toString() {
         String ret = course_id + "\t" + assigned_room + "\t" + professor + "\t" + assigned_time + "\t";
         for (int i = 0; i < student_ids.size(); i++) {
-            ret = ret + student_ids.get(i) + "\t";
+            ret = ret + student_ids.get(i) + " ";
         }
         return ret;
     }
