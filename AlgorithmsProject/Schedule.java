@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Schedule {
 
     // a list of scheduled courses
@@ -9,15 +11,11 @@ public class Schedule {
     // contains rooms ordered by capacity
     private Room[] rooms;
 
-    // a list of timeSlots
+    // A list of timeslots
     private timeSlots[] times;
 
     private int total_classes;
-
     private int total_profs;
-
-    // map of professors to courseID
-    // HashMap<string,string> prof_courses;
 
     private void fillStruc(String prefs, String conts) {
 
@@ -27,11 +25,11 @@ public class Schedule {
         // System.out.println(student_prefs[0]);
 
         // intialize time
-        String[] time_data = e.storeTime();
-        times = new timeSlots[time_data.length];
-        for (int i = 0; i < time_data.length; i++) {
+        ArrayList<Integer> time_data = e.storeTime();
+        times = new timeSlots[time_data.size()];
+        for (int i = 0; i < time_data.size(); i++) {
             times[i] = new timeSlots();
-            times[i].name = time_data[i];
+            times[i].id = time_data.get(i);
             times[i].fillstudents(student_prefs);
             // System.out.println(times[i].name);
         }
@@ -91,7 +89,8 @@ public class Schedule {
                     // remove class from students prefrence list in availableStudents
                 }
                 times[j].addProf(prof_id);
-                classCounts[k].assigned_time = times[j].name; // how will courses be stored in class count so we have
+                
+                classCounts[k].assigned_time = times[j].id; // how will courses be stored in class count so we have
                                                               // o(1) look up
                 classCounts[k].assigned_room = rooms[i];
                 // remove students from availableStudents
@@ -159,8 +158,8 @@ public class Schedule {
             return;
         }
         String prefrences = args[0];
-        String constrains = args[1];
-        Schedule s = new Schedule(prefrences, constrains);
+        String constraints = args[1];
+        Schedule s = new Schedule(prefrences, constraints);
         s.makeSchedule();
         s.enroll();
         System.out.println("Course\tRoom\tTeacher\tTime\tStudents");

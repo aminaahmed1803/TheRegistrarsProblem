@@ -6,7 +6,7 @@ public class Course {
     public String professor;
     public String course_id;
     public Room assigned_room;
-    public String assigned_time;
+    public Integer assigned_time;
 
     public Course() {
 
