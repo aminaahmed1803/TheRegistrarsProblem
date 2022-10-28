@@ -102,7 +102,7 @@ public class Schedule {
     }
 
     public void enroll() { // check for student time conflict and room capacity, enroll students
-        for (int i = 0; i < student_prefs.length; i++) {
+        /*for (int i = 0; i < student_prefs.length; i++) {
             for (int j = 0; j < student_prefs[i].preferences.size(); j++) {
                 int idx = getCourseIndex(student_prefs[i].preferences.get(j));
                 Course coursePreference = classCounts[idx];
@@ -118,7 +118,12 @@ public class Schedule {
                     }
                 }
             }
-        }
+        }*/
+        //for each course in classCounts
+            //for each student taking the course
+                //enroll the student in the course if
+                    //room has capacity 
+                    //student is not already attending a class in the timeslot  
     }
 
     public Course findCourseById(String class_id) {
