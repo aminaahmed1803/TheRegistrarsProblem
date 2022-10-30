@@ -89,9 +89,9 @@ public class Schedule {
                     // remove class from students prefrence list in availableStudents
                 }
                 times[j].addProf(prof_id);
-                
+
                 classCounts[k].assigned_time = times[j].id; // how will courses be stored in class count so we have
-                                                              // o(1) look up
+                                                            // o(1) look up
                 classCounts[k].assigned_room = rooms[i];
                 // remove students from availableStudents
                 k++;
@@ -102,15 +102,16 @@ public class Schedule {
     }
 
     public void enroll() { // check for student time conflict and room capacity, enroll students
-        /*for (int i = 0; i < student_prefs.length; i++) {
+        for (int i = 0; i < student_prefs.length; i++) {
             for (int j = 0; j < student_prefs[i].preferences.size(); j++) {
+
                 int idx = getCourseIndex(student_prefs[i].preferences.get(j));
-                Course coursePreference = classCounts[idx];
-                // System.out.println(coursePreference.student_ids.size());
-                if (coursePreference.assigned_room.getCapacity() > coursePreference.student_ids.size()) {
+
+                if (classCounts[idx].assigned_room.getCapacity() > classCounts[idx].student_ids.size()) { // is there
+                                                                                                          // enough room
 
                     // if there is available room space in the course
-                    if (studentHasConflict(student_prefs[i], coursePreference) == false) {
+                    if (!studentHasConflict(student_prefs[i], classCounts[idx])) {
 
                         // if the student is not enrolled in another course at the same time
                         // coursePreference.students.add(student_prefs[i]); // CHANGE TO ARRAYLIST
@@ -118,12 +119,8 @@ public class Schedule {
                     }
                 }
             }
-        }*/
-        //for each course in classCounts
-            //for each student taking the course
-                //enroll the student in the course if
-                    //room has capacity 
-                    //student is not already attending a class in the timeslot  
+        }
+
     }
 
     public Course findCourseById(String class_id) {
@@ -147,8 +144,9 @@ public class Schedule {
     public boolean studentHasConflict(Student student, Course course) {
         for (int i = 0; i < classCounts.length; i++) {
             for (int j = 0; j < classCounts[i].student_ids.size(); j++) {
+
                 if (classCounts[i].student_ids.get(j).equals(student.id)) {
-                    if (classCounts[i].assigned_time != course.assigned_time) {
+                    if (classCounts[i].assigned_time == course.assigned_time) {
                         return true;
                     }
                 }
