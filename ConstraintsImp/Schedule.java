@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * A class that creates a schedule which accounts
  * for the following constraints
@@ -23,37 +25,59 @@ public class Schedule {
    // A list of timeslots
    private timeSlots[] times;
 
+   // the total number of classes
    private int total_classes;
 
-   // * */
+   // the total number of professors
    private int total_profs;
 
    /**
     * a constructor
     */
    public Schedule(String prefs, String conts) {
+      fillData(prefs, conts);
+
    }
 
-   /** */
-   /*
-    * public void makeSchedule(){
-    * 
-    * for (int i = 0 ; j< rooms ; j++){
-    * for (int j = 0 ; j < timeSlots ; j++ ){
-    * if (rooms[i] is assigned to overlapping timeslot) continue;
-    * if (times[j] has no AvailableStudents or no class) continue;
-    * do {
-    * Find the next MostFamousClass
-    * RemClass from preference list of AvailableStudents
-    * } while (MostFamousClass can’t be schedule in room[i] OR Prof for
-    * MostFamousClass is unavailable)
-    * MostFamousClass = this room, this timeslot
-    * //labs if mostFamousClass is lab, schedule lab in next overlapping timeslot
-    * }
-    * }
-    * 
-    * }
-    */
+   private void fillData(String prefs, String conts) {
+
+      extractData e = new extractData(prefs, conts);
+      student_prefs = e.storePref();
+      ArrayList<Integer> t = e.storeTime();
+      rooms = e.storeRoom();
+      String[] prof = e.storeProf();
+
+      times = new timeSlots[t.size()];
+      for (int i = 0; i < t.size(); i++) {
+         times[i] = new timeSlots(t.get(i));
+      }
+
+      for (String s : prof) {
+         System.out.println(s);
+      }
+      this.total_classes = e.classes;
+      this.total_profs = e.profs;
+   }
+
+   public void makeSchedule() {
+
+      for (int i = 0; i < rooms.length; i++) {
+         for (int j = 0; j < times.length; j++) {
+            // if (rooms[i] is assigned to overlapping timeslot) continue;
+            // if (times[j] has no AvailableStudents or no class) continue;
+            // do {
+            // Find the next MostFamousClass
+            // if (MostFamousClass can’t be schedule in room[i] OR Prof for MostFamousClass
+            // is unavailable)
+            // RemClass from preference list of AvailableStudents
+            // else break;
+            // } while (true)
+            // MostFamousClass = this room, this timeslot
+            // labs if mostFamousClass is lab, schedule lab in next overlapping timeslot
+         }
+      }
+
+   }
 
    /**
     * 

@@ -10,9 +10,8 @@ public class timeSlots {
 
    public Integer id;
 
-   public String time;
-
-   public timeSlots() {
+   public timeSlots(int id) {
+      this.id = id;
       profs_teaching = new ArrayList<>();
    }
 

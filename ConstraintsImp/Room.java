@@ -14,6 +14,6 @@ public class Room {
 
    @Override
    public String toString() {
-      return name;
+      return name + " " + maxCapacity;
    }
 }
