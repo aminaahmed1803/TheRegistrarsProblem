@@ -57,23 +57,6 @@ public class Schedule {
 
    }
 
-   /*
-    * A function which determines which timeslots
-    * one timeslot has overlaps with
-    */
-   public boolean overlapTime() { // foqia
-      // uses overlapUtil()
-      return false;
-   }
-
-   /*
-    * A function which determines if there is an
-    * overlap between two timeslots
-    */
-   public boolean overlapUtil() { // foqia
-      return false;
-   }
-
    /**
     * a function which checks if the room is okay for a course
     * 
