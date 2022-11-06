@@ -1,5 +1,22 @@
 import java.util.ArrayList;
 
+/*public void makeSchedule(){
+      
+      for (int i = 0 ; j< rooms ; j++){
+         for (int j = 0 ; j < timeSlots ; j++ ){
+            if (rooms[i] is assigned to overlapping timeslot) continue;
+            if (times[j] has no AvailableStudents or no class) continue;
+            do {
+               Find the next MostFamousClass
+               RemClass from preference list of AvailableStudents
+            } while (MostFamousClass can’t be schedule in room[i] OR Prof for MostFamousClass is unavailable) 
+            MostFamousClass = this room, this timeslot 
+            //labs if mostFamousClass is lab, schedule lab in next overlapping timeslot
+         }
+      }
+      
+   }
+   */
 public class Schedule {
 
     // a list of scheduled courses
@@ -15,6 +32,7 @@ public class Schedule {
     private timeSlots[] times;
 
     private int total_classes;
+
     private int total_profs;
 
     private void fillStruc(String prefs, String conts) {
