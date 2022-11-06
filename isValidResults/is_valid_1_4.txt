@@ -1,0 +1,2 @@
+Teacher 34 scheduled for two courses at time 8.
+Line:89	16	34	8	1 40 44 70 80 107 129 183 232 292 325 351 397 421 424 550 551 562 569 

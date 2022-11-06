@@ -1,0 +1,2 @@
+Teacher 40 scheduled for two courses at time 18.
+Line:66	28	40	18	31 66 81 110 140 149 160 166 174 179 234 258 349 363 388 413 

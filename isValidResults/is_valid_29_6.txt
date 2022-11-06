@@ -1,0 +1,2 @@
+Teacher 38 scheduled for two courses at time 32.
+Line:71	2	38	32	12 53 68 84 99 104 135 138 142 204 211 275 351 398 448 

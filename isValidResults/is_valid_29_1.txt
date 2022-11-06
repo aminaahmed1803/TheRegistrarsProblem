@@ -1,0 +1,2 @@
+Teacher 7 scheduled for two courses at time 27.
+Line:66	22	7	27	16 60 102 126 162 167 240 259 266 372 

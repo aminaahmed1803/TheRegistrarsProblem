@@ -1,0 +1,2 @@
+Teacher 6 scheduled for two courses at time 1.
+Line:49	27	6	1	34 43 68 70 83 92 138 216 255 267 271 277 280 282 283 330 356 361 

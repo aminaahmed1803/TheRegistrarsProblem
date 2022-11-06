@@ -1,0 +1,2 @@
+Teacher 41 scheduled for two courses at time 3.
+Line:89	45	41	3	2 39 40 42 76 86 106 116 118 180 237 246 254 294 303 333 346 353 

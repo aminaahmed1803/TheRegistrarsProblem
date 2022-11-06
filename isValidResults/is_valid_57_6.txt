@@ -1,0 +1,2 @@
+Schedule is valid.
+Student preferences value: 4085

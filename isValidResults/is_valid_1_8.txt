@@ -1,0 +1,2 @@
+Teacher 19 scheduled for two courses at time 11.
+Line:65	26	19	11	4 11 58 124 126 138 167 183 190 200 227 235 252 298 382 415 426 482 521 596 

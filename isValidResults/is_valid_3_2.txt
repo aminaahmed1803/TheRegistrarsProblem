@@ -1,0 +1,2 @@
+Teacher 2 scheduled for two courses at time 3.
+Line:51	47	2	3	19 40 51 90 93 108 145 165 191 224 227 248 310 325 347 368 373 381 397 

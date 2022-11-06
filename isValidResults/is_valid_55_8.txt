@@ -1,0 +1,2 @@
+Teacher 27 scheduled for two courses at time 18.
+Line:62	31	27	18	8 25 41 67 77 86 115 194 196 244 246 364 453 456 517 524 560 566 

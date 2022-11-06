@@ -1,0 +1,2 @@
+Teacher 15 scheduled for two courses at time 2.
+Line:38	62	15	2	20 71 174 229 249 280 283 348 392 416 

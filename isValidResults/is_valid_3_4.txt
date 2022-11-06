@@ -1,0 +1,2 @@
+Teacher 4 scheduled for two courses at time 17.
+Line:65	52	4	17	13 53 61 68 92 103 149 156 169 172 189 202 207 237 272 321 340 349 366 385 415 

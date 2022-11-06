@@ -1,0 +1,2 @@
+Teacher 17 scheduled for two courses at time 37.
+Line:80	60	17	37	52 131 137 165 177 188 195 210 254 262 271 278 294 317 319 348 353 388 
