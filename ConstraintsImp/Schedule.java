@@ -24,58 +24,14 @@ public class Schedule {
    private timeSlots[] times;
 
    private int total_classes;
+
+   // * */
    private int total_profs;
 
    /**
     * a constructor
     */
    public Schedule(String prefs, String conts) {
-      fillbmc(prefs, conts);
-   }
-
-   private void fillbmc(String prefs, String conts) {
-
-      // student pref
-      extractbmc e = new extractbmc(prefs, conts);
-      student_prefs = e.storePref();
-      for (Student student : student_prefs) {
-         System.out.println(student.id + " " + student.preferences);
-      }
-
-      // intialize time
-      String[] time_data = e.storeTime();
-      times = new timeSlots[time_data.length];
-      for (int i = 0; i < time_data.length; i++) {
-         times[i] = new timeSlots();
-         times[i].time = time_data[i];
-      }
-
-      // intialize rooms
-      Room[] temp = e.storeRoom(); // sort this
-      rooms = new Room[temp.length];
-      for (int i = 0; i < temp.length; i++) {
-         int size = 0;
-         int idx = 0;
-         for (int j = 0; j < temp.length; i++) {
-            if (temp[j].maxCapacity > size) {
-               size = temp[j].maxCapacity;
-               idx = j;
-               temp[j].maxCapacity = -1;
-            }
-         }
-         rooms[i].maxCapacity = size;
-         rooms[i].name = temp[idx].name;
-      }
-
-      // prof of those classes in classCounts
-      String[] prof_data = e.storeProf();
-      for (int i = 0; i < classCounts.length; i++) {
-         String[] frag = prof_data[i].split("\t");
-         classCounts[i] = new Course();
-         classCounts[i].course_id = frag[0];
-         classCounts[i].professor = frag[1];
-      }
-
    }
 
    /** */
