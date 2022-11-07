@@ -5,7 +5,7 @@ import java.util.*;
 
 public class timeSlots {
 
-   public Student[] availableStudents;
+   public ArrayList<Student> availableStudents;
 
    public ArrayList<String> profs_teaching;
 
@@ -13,12 +13,19 @@ public class timeSlots {
 
    public timeSlots() {
       profs_teaching = new ArrayList<>();
+      
    }
 
    public void fillstudents(Student[] temp) {
-      availableStudents = new Student[temp.length];
+      availableStudents = new ArrayList<Student>(temp.length);
+      //availableStudents = new Student[temp.length];
+      if(temp.length == 0) return;
+      // System.out.println(temp.length);
+      // System.out.println(temp[0].id + temp[0].preferences);
+      // System.out.println(temp[1111].id + temp[1111].preferences);
       for (int i = 0; i < temp.length; i++) {
-         availableStudents[i] = new Student(temp[i].id, temp[i].preferences);
+         availableStudents.add(new Student(temp[i].id, temp[i].preferences));
+         //availableStudents.set(i, new Student(temp[i].id, temp[i].preferences));
       }
 
    }
@@ -41,8 +48,8 @@ public class timeSlots {
 
    public String mostFameClass() {
       HashMap<String, Integer> course_count = new HashMap<String, Integer>();
-      for (int i = 0; i < availableStudents.length; i++) {
-         ArrayList<String> thisprefs = availableStudents[i].preferences;
+      for (int i = 0; i < availableStudents.size(); i++) {
+         ArrayList<String> thisprefs = availableStudents.get(i).preferences;
          for (int j = 0; j < thisprefs.size(); j++) {
             String course_id = thisprefs.get(j);
             course_count.put(course_id,
@@ -64,21 +71,40 @@ public class timeSlots {
             maxCourse = key;
          }
       }
-
-      this.remClass(maxCourse);
       return maxCourse;
    }
 
    public void remClass(String class_id) {
-      for (int i = 0; i < availableStudents.length; i++) {
-         ArrayList<String> thisprefs = availableStudents[i].preferences;
+      for (int i = 0; i < availableStudents.size(); i++) {
+         ArrayList<String> thisprefs = availableStudents.get(i).preferences;
          for (int j = 0; j < thisprefs.size(); j++) {
             if (thisprefs.get(j).equals(class_id)) {
                // remove the classs from pref list
-               availableStudents[i].preferences.remove(class_id);
+               availableStudents.get(i).preferences.remove(class_id);
             }
          }
       }
+
+      
    }
+
+   public void remStud(String class_id){
+      ArrayList<Student> toRemove = new ArrayList<Student>();
+      for( Student student : availableStudents){
+         ArrayList<String>thisprefs = student.preferences;
+         for(int j = 0; j < thisprefs.size(); j++){
+            if (thisprefs.get(j).equals(class_id)) {
+               //remove student from list of available students
+               toRemove.add(student);
+            }
+         }
+      }
+
+      for(Student student : toRemove){
+         availableStudents.remove(student);
+      }
+
+   }
+
 
 }

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Course {
 
-    public ArrayList<Integer> student_ids = new ArrayList<>();
+    public ArrayList<String> student_ids = new ArrayList<>();
     public String professor;
     public String course_id;
     public Room assigned_room;

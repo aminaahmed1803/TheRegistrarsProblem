@@ -4,10 +4,10 @@ public class Student {
 
     public ArrayList<String> preferences;
     // private String[] preferences;
-    public int id;
+    public String id;
 
     public Student(String id, String pref) {
-        this.id = Integer.parseInt(id);
+        this.id = id;
         String[] data = pref.split(" ");
 
         this.preferences = new ArrayList<String>(data.length);
@@ -18,7 +18,7 @@ public class Student {
 
     }
 
-    public Student(int id, ArrayList<String> pref) {
+    public Student(String id, ArrayList<String> pref) {
         this.id = id;
         this.preferences = new ArrayList<String>(pref.size());
         for (int i = 0; i < pref.size(); i++) {
@@ -27,7 +27,7 @@ public class Student {
 
     }
 
-    public int getId() {
+    public String getId() {
         return this.id;
     }
 

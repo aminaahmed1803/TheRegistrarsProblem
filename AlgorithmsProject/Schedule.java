@@ -15,14 +15,15 @@ public class Schedule {
     private timeSlots[] times;
 
     private int total_classes;
+
     private int total_profs;
 
     private void fillStruc(String prefs, String conts) {
 
-        // student pref
+        // student pref 
         extractData e = new extractData(prefs, conts);
         student_prefs = e.storePref();
-        // System.out.println(student_prefs[0]);
+        //FINE
 
         // intialize time
         ArrayList<Integer> time_data = e.storeTime();
@@ -70,23 +71,40 @@ public class Schedule {
     }
 
     public void makeSchedule() {
-
         int k = 0;
         for (int i = 0; i < rooms.length; i++) {
             for (int j = 0; j < times.length; j++) {
-                String class_id = times[j].mostFameClass();
-                // System.out.println("Class ID" + class_id);
-                if (class_id.equals("")) {
-                    // System.out.println("skip");
-                    continue;
+                ArrayList<String> profsTeaching = times[j].profs_teaching;
+                System.out.println("PROFESSORS TEACHING in " + times[j].id);
+                for(String s : profsTeaching){
+                    System.out.println(s);
                 }
-                String prof_id = findCourseById(class_id).professor; // class using class_id and find the prof for
+                System.out.println("thats all!");
+                if (times[j].availableStudents.size() == 0) continue;
+                String class_id;
+                // System.out.println("Class ID" + class_id);
+                
+                String prof_id;// = findCourseById(class_id).professor; // class using class_id and find the prof for
                 // System.out.println(class_id + " " + i + " " + j + " " + prof_id); // the
                 // class
-                while (times[j].isTeaching(prof_id)) {
+                while (true) {
                     class_id = times[j].mostFameClass();
+                    System.out.println("Most famous class for timeslot: " + times[j].id + " is " + class_id);
+                    if (class_id.equals("")) {
+                        // System.out.println("skip");
+                        continue;
+                    }
                     prof_id = findCourseById(class_id).professor;
-                    // remove class from students prefrence list in availableStudents
+                    
+                    if (times[j].isTeaching(prof_id)){
+                        //Remove class from ALL TIMEslots
+                        for(int x = 0; x < times.length; x++){
+                            times[x].remClass(class_id);
+                        }
+                    }
+                    else break;
+                    
+                    //Remove class from students prefrence list in availableStudents
                 }
                 times[j].addProf(prof_id);
 
@@ -94,6 +112,7 @@ public class Schedule {
                                                             // o(1) look up
                 classCounts[k].assigned_room = rooms[i];
                 // remove students from availableStudents
+                times[j].remStud(class_id);
                 k++;
                 if (k >= total_classes)
                     return;
@@ -107,9 +126,11 @@ public class Schedule {
 
                 int idx = getCourseIndex(student_prefs[i].preferences.get(j));
 
+                if(idx == -1){
+                    continue;
+                }
                 if (classCounts[idx].assigned_room.getCapacity() > classCounts[idx].student_ids.size()) { // is there
                                                                                                           // enough room
-
                     // if there is available room space in the course
                     if (!studentHasConflict(student_prefs[i], classCounts[idx])) {
 
@@ -167,7 +188,7 @@ public class Schedule {
         s.enroll();
         System.out.println("Course\tRoom\tTeacher\tTime\tStudents");
         for (int i = 0; i < s.classCounts.length; i++) {
-            System.out.println(s.classCounts[i].toString());
+           System.out.println(s.classCounts[i].toString());
         }
     }
 }

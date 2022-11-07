@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.stream.*;
+import java.util.Collections;
 
 public class extractData {
 
@@ -71,7 +72,7 @@ public class extractData {
          // System.out.println(line);
          String[] frag = line.split("\t");
          int l = Integer.parseInt(frag[1]); //Store number of class times
-         timeSlots = new ArrayList<Integer>(l);
+         timeSlots = new ArrayList<Integer>(Collections.nCopies(l, 0));
          int idx = 0;
 
          line = br.readLine();
@@ -89,7 +90,7 @@ public class extractData {
                line = br.readLine();
                frag = line.split("\t");
                timeSlots.set(idx, Integer.parseInt(frag[0]));
-               System.out.println(timeSlots.get(idx));
+               //System.out.println(timeSlots.get(idx));
                idx++;
             }
          }
