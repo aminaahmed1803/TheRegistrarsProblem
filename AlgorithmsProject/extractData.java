@@ -72,7 +72,8 @@ public class extractData {
          // System.out.println(line);
          String[] frag = line.split("\t");
          int l = Integer.parseInt(frag[1]); //Store number of class times
-         timeSlots = new ArrayList<Integer>(Collections.nCopies(l, 0));
+         //System.out.println(l + " time slots");
+         timeSlots = new ArrayList<Integer>(/*Collections.nCopies(l, 0)*/);
          int idx = 0;
 
          line = br.readLine();
@@ -80,8 +81,11 @@ public class extractData {
             frag = line.split("\t");
             this.roomsTemp = frag[1];
             for(int i = 1; i < l+1; i++){
+               //System.out.println("Adding time slot: " + i);
                timeSlots.add(i);
             }
+            //System.out.println(timeSlots.size());
+            return timeSlots;
          } else{
             frag = line.split("\t");
             timeSlots.set(idx, Integer.parseInt(frag[0]));
@@ -113,6 +117,7 @@ public class extractData {
       }
 
       // System.out.println("Done time slots");
+      //System.out.println(timeSlots.size());
       return timeSlots;
    }
 

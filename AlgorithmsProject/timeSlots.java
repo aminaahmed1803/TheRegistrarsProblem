@@ -20,9 +20,7 @@ public class timeSlots {
       availableStudents = new ArrayList<Student>(temp.length);
       //availableStudents = new Student[temp.length];
       if(temp.length == 0) return;
-      // System.out.println(temp.length);
-      // System.out.println(temp[0].id + temp[0].preferences);
-      // System.out.println(temp[1111].id + temp[1111].preferences);
+
       for (int i = 0; i < temp.length; i++) {
          availableStudents.add(new Student(temp[i].id, temp[i].preferences));
          //availableStudents.set(i, new Student(temp[i].id, temp[i].preferences));
@@ -31,11 +29,13 @@ public class timeSlots {
    }
 
    public boolean isTeaching(String prof_id) {
-      if (profs_teaching == null)
-         return false;
+      if (profs_teaching == null) return false;
 
       for (int i = 0; i < this.profs_teaching.size(); i++) {
+         //System.out.println("Professor: " + profs_teaching.get(i) + " = " + prof_id + ", " + prof_id.equals(this.profs_teaching.get(i)));
+
          if (prof_id.equals(this.profs_teaching.get(i))) {
+            //System.out.println("Professor " + profs_teaching.get(i) + " is already teaching at time " + this.id);
             return true;
          }
       }
@@ -44,6 +44,12 @@ public class timeSlots {
 
    public void addProf(String prof_id) {
       profs_teaching.add(prof_id);
+      //System.out.println("Added professor " + prof_id + " to time slot " + id);
+      //System.out.println("Number of profs teaching in time slot " + id + ": " + profs_teaching.size());
+      for(int i = 0; i < profs_teaching.size(); i++) {
+         //System.out.print("Profs teaching: " + profs_teaching.get(i) + ", ");
+      }
+      //System.out.println();
    }
 
    public String mostFameClass() {
@@ -52,8 +58,7 @@ public class timeSlots {
          ArrayList<String> thisprefs = availableStudents.get(i).preferences;
          for (int j = 0; j < thisprefs.size(); j++) {
             String course_id = thisprefs.get(j);
-            course_count.put(course_id,
-                  ((course_count.get(course_id) == null) ? 0 : (course_count.get(course_id) + 1)));
+            course_count.put(course_id, ((course_count.get(course_id) == null) ? 0 : (course_count.get(course_id) + 1)));
          }
       }
       // Now we hava a hashmap that has courses and the number of students who want to
@@ -71,26 +76,39 @@ public class timeSlots {
             maxCourse = key;
          }
       }
+      //System.out.println("Counts: "+ course_count.get(maxCourse));
       return maxCourse;
    }
 
+   //Remove scheduled class from student preference list
+   //Affects enroll?
    public void remClass(String class_id) {
+
+      //System.out.println("Size before removal: " + availableStudents.size());
+
       for (int i = 0; i < availableStudents.size(); i++) {
          ArrayList<String> thisprefs = availableStudents.get(i).preferences;
+         //System.out.print("Course: " + class_id + ", Student: " + availableStudents.get(i).id + ",");
          for (int j = 0; j < thisprefs.size(); j++) {
+            //System.out.print(" " + thisprefs.get(j));
             if (thisprefs.get(j).equals(class_id)) {
                // remove the classs from pref list
+               //System.out.println("Removing course " + class_id + " from student " + availableStudents.get(i).id + " preferences");
                availableStudents.get(i).preferences.remove(class_id);
             }
          }
+         //System.out.println();
       }
 
+      //System.out.println("Size after removal: " + availableStudents.size());
       
    }
 
+   //Remove student from available students at this time
    public void remStud(String class_id){
       ArrayList<Student> toRemove = new ArrayList<Student>();
-      for( Student student : availableStudents){
+      //System.out.println("Size before removal: " + availableStudents.size());
+      for(Student student : availableStudents){
          ArrayList<String>thisprefs = student.preferences;
          for(int j = 0; j < thisprefs.size(); j++){
             if (thisprefs.get(j).equals(class_id)) {
@@ -101,8 +119,10 @@ public class timeSlots {
       }
 
       for(Student student : toRemove){
+        //System.out.println("Removing student " + student.id + " availability at " + id);
          availableStudents.remove(student);
       }
+      //System.out.println("Size after removal: " + availableStudents.size());
 
    }
 

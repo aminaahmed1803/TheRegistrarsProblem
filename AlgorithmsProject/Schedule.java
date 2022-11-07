@@ -28,11 +28,12 @@ public class Schedule {
         // intialize time
         ArrayList<Integer> time_data = e.storeTime();
         times = new timeSlots[time_data.size()];
+        //System.out.println("Size of time_data: " + time_data.size());
         for (int i = 0; i < time_data.size(); i++) {
             times[i] = new timeSlots();
             times[i].id = time_data.get(i);
             times[i].fillstudents(student_prefs);
-            // System.out.println(times[i].name);
+            //System.out.println("Created time slot: " + times[i].id);
         }
 
         // intialize rooms
@@ -74,12 +75,15 @@ public class Schedule {
         int k = 0;
         for (int i = 0; i < rooms.length; i++) {
             for (int j = 0; j < times.length; j++) {
-                ArrayList<String> profsTeaching = times[j].profs_teaching;
-                System.out.println("PROFESSORS TEACHING in " + times[j].id);
-                for(String s : profsTeaching){
-                    System.out.println(s);
-                }
-                System.out.println("thats all!");
+                //System.out.println("Scheduling in room: " + rooms[i] + ", time: " + times[j].id + ", " + j);
+
+                //ArrayList<String> profsTeaching = times[j].profs_teaching;
+                // System.out.println("PROFESSORS TEACHING in " + times[j].id);
+                // for(String s : times[j].profs_teaching){
+                //     System.out.println(s);
+                // }
+                // System.out.println("thats all!");
+
                 if (times[j].availableStudents.size() == 0) continue;
                 String class_id;
                 // System.out.println("Class ID" + class_id);
@@ -89,33 +93,54 @@ public class Schedule {
                 // class
                 while (true) {
                     class_id = times[j].mostFameClass();
-                    System.out.println("Most famous class for timeslot: " + times[j].id + " is " + class_id);
+                    //System.out.println("Most famous class for timeslot: " + times[j].id + " is " + class_id);
                     if (class_id.equals("")) {
-                        // System.out.println("skip");
+                        System.out.println("skip");
                         continue;
                     }
                     prof_id = findCourseById(class_id).professor;
                     
+                    //System.out.println("Trying to schedule course " + class_id + " at time " + times[j].id + " room " + rooms[i]);
                     if (times[j].isTeaching(prof_id)){
-                        //Remove class from ALL TIMEslots
-                        for(int x = 0; x < times.length; x++){
-                            times[x].remClass(class_id);
-                        }
+                        //Remove class from ALL TIMEslots, condition never met
+                        //Retrieve next most famous class
+                        //System.out.println("Removing course " + class_id + " from student prefs at time slot " + times[j].id);
+                        times[j].remClass(class_id);
+                    } else {
+                        break;
                     }
-                    else break;
                     
+                
                     //Remove class from students prefrence list in availableStudents
                 }
                 times[j].addProf(prof_id);
+                int c = getCourseIndex(class_id);
+                //System.out.println("Scheduling course " + classCounts[c].course_id + " at time " + times[j].id + " room " + rooms[i]);
 
-                classCounts[k].assigned_time = times[j].id; // how will courses be stored in class count so we have
-                                                            // o(1) look up
-                classCounts[k].assigned_room = rooms[i];
-                // remove students from availableStudents
-                times[j].remStud(class_id);
+                // if(classCounts[Integer.parseInt(class_id)].assigned_room != null) {
+                //     classCounts[Integer.parseInt(class_id)].assigned_room = rooms[i];
+                //     classCounts[Integer.parseInt(class_id)].assigned_time = times[j].id;
+                // }
+                
+                //NEED TO GET INDEX IN CLASSCOUNTS FROM CLASS_ID
+                
+
+                classCounts[c].assigned_time = times[j].id; // how will courses be stored in class count so we have o(1) look up
+                classCounts[c].assigned_room = rooms[i];
+
+                // remove students from availableStudents, so that the next famous class is not the same in the next time slot
+                // should also remove course from all student preference lists
                 k++;
-                if (k >= total_classes)
-                    return;
+                if (k >= total_classes) return;
+
+
+                times[j].remStud(class_id);
+                for(int x = 0; x < times.length; x++) {
+                    times[x].remClass(class_id);
+                }
+                
+
+                //System.out.println();
             }
         }
     }
