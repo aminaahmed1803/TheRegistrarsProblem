@@ -1,2 +1,3 @@
-Teacher 8 scheduled for two courses at time 9.
-Line:55	71	8	9	32 33 53 103 124 143 163 281 293 319 337 396 402 433 446 502 538 567 572 599 614 618 667 669 680 
+Schedule is valid.
+Student preferences value: 5782
+Maximum value: 5788

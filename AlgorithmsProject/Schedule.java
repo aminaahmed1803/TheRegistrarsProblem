@@ -18,6 +18,8 @@ public class Schedule {
 
     private int total_profs;
 
+    public long runTime;
+
     private void fillStruc(String prefs, String conts) {
 
         // student pref 
@@ -95,8 +97,9 @@ public class Schedule {
                     class_id = times[j].mostFameClass();
                     //System.out.println("Most famous class for timeslot: " + times[j].id + " is " + class_id);
                     if (class_id.equals("")) {
-                        System.out.println("skip");
-                        continue;
+                        //System.out.println("skip");
+                        prof_id = null;
+                        break;
                     }
                     prof_id = findCourseById(class_id).professor;
                     
@@ -202,6 +205,7 @@ public class Schedule {
     }
 
     public static void main(String[] args) {
+        long startTime = System.nanoTime();
         if (args.length != 2) {
             System.out.println("Usage: <prefences> <constraints>");
             return;
@@ -215,5 +219,7 @@ public class Schedule {
         for (int i = 0; i < s.classCounts.length; i++) {
            System.out.println(s.classCounts[i].toString());
         }
+        long stopTime = System.nanoTime();
+        s.runTime = startTime - stopTime;
     }
 }

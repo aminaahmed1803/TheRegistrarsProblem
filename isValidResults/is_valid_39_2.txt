@@ -1,2 +1,3 @@
-Teacher 23 scheduled for two courses at time 1.
-Line:31	50	23	1	34 41 42 47 48 52 59 81 83 100 114 131 170 184 195 225 240 243 261 274 285 335 350 370 388 391 392 398 406 421 428 431 433 478 496 499 504 509 515 
+Schedule is valid.
+Student preferences value: 3300
+Maximum value: 3344

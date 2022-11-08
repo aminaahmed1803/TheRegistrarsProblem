@@ -1,2 +1,3 @@
 Schedule is valid.
-Student preferences value: 2522
+Student preferences value: 1926
+Maximum value: 1940

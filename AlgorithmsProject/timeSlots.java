@@ -20,7 +20,7 @@ public class timeSlots {
       availableStudents = new ArrayList<Student>(temp.length);
       //availableStudents = new Student[temp.length];
       if(temp.length == 0) return;
-
+      // System.out.println(temp.length);
       for (int i = 0; i < temp.length; i++) {
          availableStudents.add(new Student(temp[i].id, temp[i].preferences));
          //availableStudents.set(i, new Student(temp[i].id, temp[i].preferences));
