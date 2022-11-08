@@ -4,7 +4,7 @@ import java.util.*;
 
 public class timeSlots {
 
-   public Student[] availableStudents;
+   public ArrayList<Student> availableStudents;
 
    public ArrayList<String> profs_teaching;
 
@@ -13,30 +13,31 @@ public class timeSlots {
    public timeSlots(int id) {
       this.id = id;
       profs_teaching = new ArrayList<>();
+      this.availableStudents = new ArrayList<>();
    }
 
    public void fillstudents(Student[] temp) {
-      availableStudents = new Student[temp.length];
       for (int i = 0; i < temp.length; i++) {
-         availableStudents[i] = new Student(temp[i].id, temp[i].preferences);
+         Student s = temp[i];
+         availableStudents.add(s);
       }
-
    }
 
-   /*
-    * A function which determines which timeslots
-    * one timeslot has overlaps with
-    */
-   public boolean overlapTime() { // foqia
-      // uses overlapUtil()
-      return false;
+   public String mostFamousClass() {
+      return null;
    }
 
-   /*
-    * A function which determines if there is an
-    * overlap between two timeslots
-    */
-   public boolean overlapUtil() { // foqia
-      return false;
+   public boolean isTeaching(String prof) {
+      return profs_teaching.contains(prof);
+   }
+
+   public void remClass(String class_id) {
+   }
+
+   public void remStuds(String class_id) {
+   }
+
+   public void addProf(String professor) {
+      profs_teaching.add(professor);
    }
 }
