@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Schedule {
 
@@ -116,23 +119,13 @@ public class Schedule {
                 
                     //Remove class from students prefrence list in availableStudents
                 }
-                times[j].addProf(prof_id);
-                int c = getCourseIndex(class_id);
-                //System.out.println("Scheduling course " + classCounts[c].course_id + " at time " + times[j].id + " room " + rooms[i]);
+                if(!class_id.equals("")){
+                    times[j].addProf(prof_id);
+                    int c = getCourseIndex(class_id);
+                    classCounts[c].assigned_time = times[j].id; // how will courses be stored in class count so we have o(1) look up
+                    classCounts[c].assigned_room = rooms[i];
+                }
 
-                // if(classCounts[Integer.parseInt(class_id)].assigned_room != null) {
-                //     classCounts[Integer.parseInt(class_id)].assigned_room = rooms[i];
-                //     classCounts[Integer.parseInt(class_id)].assigned_time = times[j].id;
-                // }
-                
-                //NEED TO GET INDEX IN CLASSCOUNTS FROM CLASS_ID
-                
-
-                classCounts[c].assigned_time = times[j].id; // how will courses be stored in class count so we have o(1) look up
-                classCounts[c].assigned_room = rooms[i];
-
-                // remove students from availableStudents, so that the next famous class is not the same in the next time slot
-                // should also remove course from all student preference lists
                 k++;
                 if (k >= total_classes) return;
 
@@ -157,7 +150,7 @@ public class Schedule {
                 if(idx == -1){
                     continue;
                 }
-                if (classCounts[idx].assigned_room.getCapacity() > classCounts[idx].student_ids.size()) { // is there
+                if (classCounts[idx].assigned_room != null && classCounts[idx].assigned_room.getCapacity() > classCounts[idx].student_ids.size()) { // is there
                                                                                                           // enough room
                     // if there is available room space in the course
                     if (!studentHasConflict(student_prefs[i], classCounts[idx])) {
@@ -205,7 +198,7 @@ public class Schedule {
     }
 
     public static void main(String[] args) {
-        long startTime = System.nanoTime();
+        long startTime = System.currentTimeMillis();
         if (args.length != 2) {
             System.out.println("Usage: <prefences> <constraints>");
             return;
@@ -217,9 +210,30 @@ public class Schedule {
         s.enroll();
         System.out.println("Course\tRoom\tTeacher\tTime\tStudents");
         for (int i = 0; i < s.classCounts.length; i++) {
+            if(s.classCounts[i].toString() == null) continue;
            System.out.println(s.classCounts[i].toString());
         }
-        long stopTime = System.nanoTime();
-        s.runTime = startTime - stopTime;
+        long stopTime = System.currentTimeMillis();
+        s.runTime = stopTime - startTime;
+
+        try { 
+            String sub = constraints.substring(25);
+    
+
+            String sub2 = sub.split("\\.", 2)[0];
+
+
+            String[] sub3 = sub2.split("_");
+            String filename = "../runtime/runtime_" + sub3[0]  + "_"+ sub3[1] + ".txt";
+            BufferedWriter f_writer = new BufferedWriter(new FileWriter(filename));
+            String runtime =  Long.toString(s.runTime);
+            f_writer.write("Time take: " + runtime);
+            
+            f_writer.close();
+        }
+         catch (IOException e) {
+            System.out.print(e.getMessage());
+        }
+        
     }
 }

@@ -14,6 +14,9 @@ public class Course {
 
     @Override
     public String toString() {
+        if(assigned_room == null){
+            return null;
+        }
         String ret = course_id + "\t" + assigned_room + "\t" + professor + "\t" + assigned_time + "\t";
         for (int i = 0; i < student_ids.size(); i++) {
             ret = ret + student_ids.get(i) + " ";
