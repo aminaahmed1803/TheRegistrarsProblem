@@ -153,9 +153,9 @@ public class extractData {
 
          while (idx < classes) {
             line = br.readLine();
-            frag = line.split("\t");
+            // frag = line.split("\t");
             // System.out.println(frag[0] + " " + frag[1] + "len: " + frag.length);
-            professors[idx] = frag[0] + " " + frag[1]; // 0 = courses, 1 = prof id
+            professors[idx] = line; // 0 = courses, 1 = prof id
             idx++;
          }
 
