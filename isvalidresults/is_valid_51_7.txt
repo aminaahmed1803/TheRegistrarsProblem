@@ -1,2 +1,4 @@
-Teacher 40 scheduled for two courses at time 9.
-Line:62	30	40	9	10 35 40 54 56 124 131 149 152 155 165 216 218 251 261 275 283 293 393 414 434 443 476 506 512 521 533 555 574 579 607 621 642 653 661 680 719 727 769 773 776 
+Schedule is valid.
+Student preferences value: 2979
+Maximum value: 3148
+% Optimality 0.946315120711563

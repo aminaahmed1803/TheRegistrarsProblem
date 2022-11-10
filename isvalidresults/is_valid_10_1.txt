@@ -1,2 +1,4 @@
-Content line has incorrect format.
-Line:2a	55	8	24	9 27 43 44 50 63 65 93 97 100 104 110 119 152 153 154 167 
+Schedule is valid.
+Student preferences value: 1901
+Maximum value: 1940
+% Optimality 0.979896907216495

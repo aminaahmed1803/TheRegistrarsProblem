@@ -1,2 +1,4 @@
-Teacher 2 scheduled for two courses at time 43.
-Line:80	6	2	43	
+Schedule is valid.
+Student preferences value: 3192
+Maximum value: 3240
+% Optimality 0.985185185185185

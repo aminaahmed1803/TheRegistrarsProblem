@@ -1,2 +1,4 @@
-Teacher 15 scheduled for two courses at time 4.
-Line:30	11	15	4	28 35 43 67 125 135 142 146 178 187 252 273 275 295 324 382 391 411 445 485 550 573 581 595 605 
+Schedule is valid.
+Student preferences value: 2240
+Maximum value: 2508
+% Optimality 0.893141945773525

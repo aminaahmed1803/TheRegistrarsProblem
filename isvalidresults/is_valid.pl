@@ -151,7 +151,8 @@ while (<SCHED>) {
 
 print "Schedule is valid.\n";
 print "Student preferences value: ", $stuprefs, "\n";
-print "Maximum value: ", $numstudents * 4;
+print "Maximum value: ", $numstudents * 4, "\n";
+print "% Optimality ", $stuprefs / ($numstudents * 4);
 
 exit 0;
 
