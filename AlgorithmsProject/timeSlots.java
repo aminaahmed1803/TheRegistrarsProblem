@@ -21,7 +21,7 @@ public class timeSlots {
          availableStudents[i] = new Student(temp[i].id, temp[i].preferences);
       }
 
-   }}
+   }
 
    public boolean isTeaching(String prof_id) {
       if (profs_teaching == null)

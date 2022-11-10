@@ -70,18 +70,19 @@ public class extractData {
          String line = br.readLine();
          // System.out.println(line);
          String[] frag = line.split("\t");
-         int l = Integer.parseInt(frag[1]); //Store number of class times
+         int l = Integer.parseInt(frag[1]); // Store number of class times
          timeSlots = new ArrayList<Integer>(l);
          int idx = 0;
 
          line = br.readLine();
-         if(line.contains("Rooms")){
+         if (line.contains("Rooms")) {
             frag = line.split("\t");
             this.roomsTemp = frag[1];
-            for(int i = 1; i < l+1; i++){
+            for (int i = 1; i < l + 1; i++) {
                timeSlots.add(i);
             }
-         } else{
+         } else {
+            System.out.println(line);
             frag = line.split("\t");
             timeSlots.set(idx, Integer.parseInt(frag[0]));
             idx++;
@@ -94,17 +95,17 @@ public class extractData {
             }
          }
          // while (idx < l) {
-         //    line = br.readLine();
-         //    if(line.contains("Rooms")){
-         //       for(int i = 1; i < l+1; i++){
-         //          timeSlots.add(i);
-         //       }
-         //       break;
-         //    }
-         //    frag = line.split("\t");
-         //    // System.out.println(frag[1]);
-         //    timeSlots.set(idx, Integer.parseInt(frag[0]));
-         //    idx++;
+         // line = br.readLine();
+         // if(line.contains("Rooms")){
+         // for(int i = 1; i < l+1; i++){
+         // timeSlots.add(i);
+         // }
+         // break;
+         // }
+         // frag = line.split("\t");
+         // // System.out.println(frag[1]);
+         // timeSlots.set(idx, Integer.parseInt(frag[0]));
+         // idx++;
          // }
 
       } catch (IOException ioe) {
@@ -119,13 +120,13 @@ public class extractData {
    public Room[] storeRoom() {
 
       Room[] rooms;
-      
+
       try {
          String line;
          int l;
-         if(this.roomsTemp != null){
+         if (this.roomsTemp != null) {
             l = Integer.parseInt(this.roomsTemp);
-         } else{
+         } else {
             line = br.readLine();
             String[] frag = line.split("\t");
             l = Integer.parseInt(frag[1]);
@@ -167,9 +168,9 @@ public class extractData {
 
          while (idx < classes) {
             line = br.readLine();
-            frag = line.split("\t");
+            // frag = line.split("\t");
             // System.out.println(frag[0] + " " + frag[1] + "len: " + frag.length);
-            professors[idx] = frag[0] + " " + frag[1]; // 0 = courses, 1 = prof id
+            professors[idx] = line;// frag[0] + " " + frag[1]; // 0 = courses, 1 = prof id
             idx++;
          }
 

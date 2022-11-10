@@ -8,6 +8,11 @@ public class Room {
         this.name = n;
     }
 
+    public Room() {
+        this.maxCapacity = 0;
+        this.name = null;
+    }
+
     public int getCapacity() {
         return maxCapacity;
     }
