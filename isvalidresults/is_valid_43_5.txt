@@ -1,0 +1,2 @@
+Teacher 33 scheduled for two courses at time 7.
+Line:67	51	33	7	11 29 42 46 50 91 128 133 135 172 173 229 251 275 297 305 334 368 373 376 381 437 

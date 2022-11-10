@@ -1,0 +1,2 @@
+Teacher 22 scheduled for two courses at time 19.
+Line:83	49	22	19	7 18 50 88 156 173 212 213 225 229 245 246 259 306 356 

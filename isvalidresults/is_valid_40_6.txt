@@ -1,0 +1,2 @@
+Teacher 25 scheduled for two courses at time 6.
+Line:82	13	25	6	93 112 127 140 174 199 210 233 246 247 286 300 367 386 406 410 456 460 470 

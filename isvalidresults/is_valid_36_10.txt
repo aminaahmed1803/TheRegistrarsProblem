@@ -1,0 +1,2 @@
+Teacher 8 scheduled for two courses at time 20.
+Line:84	63	8	20	10 78 104 118 132 143 186 197 223 247 284 305 400 

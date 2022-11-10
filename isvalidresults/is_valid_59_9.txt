@@ -1,0 +1,2 @@
+Teacher 20 scheduled for two courses at time 9.
+Line:85	22	20	9	12 30 67 117 121 310 343 364 371 393 397 408 419 447 453 

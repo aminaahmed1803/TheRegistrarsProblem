@@ -1,0 +1,2 @@
+Teacher 34 scheduled for two courses at time 1.
+Line:35	25	34	1	

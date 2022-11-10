@@ -1,0 +1,2 @@
+Teacher 32 scheduled for two courses at time 6.
+Line:46	45	32	6	6 86 98 109 110 165 228 249 263 266 337 345 350 382 384 457 462 

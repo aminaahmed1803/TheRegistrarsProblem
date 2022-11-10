@@ -17,11 +17,15 @@ public class Course {
         section = false;
         interested_students = 0;
         assigned_room = new Room();
+        assigned_time = 0;
 
     }
 
     @Override
     public String toString() {
+        if(assigned_time == 0){
+            return null;
+        }
         String ret = course_id + "\t" + assigned_room + "\t" + professor + "\t" + assigned_time + "\t";
         for (int i = 0; i < student_ids.size(); i++) {
             ret = ret + student_ids.get(i) + " ";
@@ -31,6 +35,7 @@ public class Course {
 
     public boolean isValidRoom(String room) {
         // System.out.println("valid room size" + validRooms.size() + "");
+
         if (validRooms.contains(room) || validRooms.size() == 0) {
             return true;
         } else {

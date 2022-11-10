@@ -1,0 +1,2 @@
+Teacher 7 scheduled for two courses at time 3.
+Line:60	83	7	3	2 24 28 60 66 67 92 96 142 157 187 193 202 209 211 262 317 394 

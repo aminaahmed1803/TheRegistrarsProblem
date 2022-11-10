@@ -1,0 +1,2 @@
+Teacher 22 scheduled for two courses at time 5.
+Line:38	62	22	5	39 85 126 132 150 180 185 202 212 222 223 264 271 

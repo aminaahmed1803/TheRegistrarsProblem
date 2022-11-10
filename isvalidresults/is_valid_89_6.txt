@@ -1,0 +1,2 @@
+Content line has incorrect format.
+Line:2a	84	6	18	3 13 32 45 56 60 67 77 80 140 147 152 172 

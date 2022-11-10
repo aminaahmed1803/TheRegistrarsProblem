@@ -1,0 +1,2 @@
+Teacher 21 scheduled for two courses at time 7.
+Line:49	34	21	7	22 166 204 207 262 290 294 302 336 

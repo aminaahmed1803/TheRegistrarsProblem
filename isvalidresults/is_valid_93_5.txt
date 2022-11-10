@@ -1,0 +1,2 @@
+Teacher 2 scheduled for two courses at time 43.
+Line:80	6	2	43	

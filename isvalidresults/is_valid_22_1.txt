@@ -1,0 +1,2 @@
+Teacher 3 scheduled for two courses at time 10.
+Line:69	15	3	10	8 55 78 97 128 129 187 198 248 258 266 270 279 

@@ -1,0 +1,2 @@
+Teacher 18 scheduled for two courses at time 11.
+Line:56	55	18	11	15 16 24 42 188 229 245 254 267 275 307 310 

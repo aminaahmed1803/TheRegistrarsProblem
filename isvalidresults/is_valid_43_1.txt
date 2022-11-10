@@ -1,0 +1,2 @@
+Teacher 10 scheduled for two courses at time 1.
+Line:57	52	10	1	1 19 24 86 90 125 131 147 210 224 225 226 239 252 266 267 279 302 306 357 368 389 

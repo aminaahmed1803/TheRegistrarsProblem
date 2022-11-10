@@ -1,0 +1,2 @@
+Teacher 42 scheduled for two courses at time 6.
+Line:69	25	42	6	19 24 30 70 161 173 234 244 298 303 309 375 386 449 460 480 511 531 552 589 

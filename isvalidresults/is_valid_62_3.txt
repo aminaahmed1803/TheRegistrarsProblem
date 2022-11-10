@@ -1,0 +1,2 @@
+Teacher 11 scheduled for two courses at time 4.
+Line:27	3	11	4	15 77 105 122 124 127 140 167 181 192 228 239 298 338 351 361 374 384 396 448 450 
