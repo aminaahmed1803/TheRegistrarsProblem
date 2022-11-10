@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Schedule {
 
@@ -21,6 +24,8 @@ public class Schedule {
     private int total_profs;
 
     private int size;
+
+    public long runTime;
 
     //Map contains overlapping timeslots
     private HashMap<Integer, Integer> overlappingTimes;
@@ -73,7 +78,7 @@ public class Schedule {
         this.total_classes = e.classes;
         this.total_profs = e.profs;
 
-        //preprocessPref();
+        // preprocessPref();
 
         // System.out.println("made sections");
 
@@ -231,6 +236,7 @@ public class Schedule {
     public void makeSchedule() {
 
         int k = 0;
+        String prof_id = null;
         for (int i = 0; i < rooms.length; i++) {
             for (int j = 0; j < times.length; j++) {
                 Integer timeslot_id = times[j].id;
@@ -253,7 +259,12 @@ public class Schedule {
 
                 Course t = findCourseById(class_id);
                 //System.out.println(class_id);
-                String prof_id = t.professor; // class using class_id and find the prof for
+                if(t != null){
+                    prof_id = t.professor;
+                } else{
+                    break;
+                }
+                 // class using class_id and find the prof for
                 //System.out.println(prof_id);
                 // System.out.println(class_id + " " + i + " " + j + " " + prof_id); // the class
                 
@@ -266,21 +277,28 @@ public class Schedule {
                 } else {
                     isTeachingOverlapping = times[index].isTeaching(prof_id); //is this professor teaching in overlapping timeslot
                 }
-                while (times[j].isTeaching(prof_id) || isTeachingOverlapping || !t.isValidRoom(rooms[i].name)) {
+                while (times[j].isTeaching(prof_id) || isTeachingOverlapping || !t.isValidRoom(rooms[i].name) || t.assigned_time != 0) {
                     class_id = times[j].mostFameClass();
                     t = findCourseById(class_id);
-                    prof_id = t.professor;
-
+                    if(t != null){
+                        prof_id = t.professor;
+                    } else{
+                        break;
+                    }
                     // remove class from students prefrence list in availableStudents
                 }
-                times[j].addProf(prof_id);
+                if(!class_id.equals("") && getCourseIndex(class_id) != -1){
+                    int c = getCourseIndex(class_id);
+                    times[j].addProf(prof_id);
+                    ArrayList<Integer> ts = room_timeslots.get(rooms[i].name);
+                    ts.add(times[j].id);
+                    room_timeslots.replace(rooms[i].name, ts);
 
-                ArrayList<Integer> ts = room_timeslots.get(rooms[i].name);
-                ts.add(times[j].id);
-                room_timeslots.replace(rooms[i].name, ts);
-
-                classCounts.get(k).assigned_time = times[j].id;
-                classCounts.get(k).assigned_room = rooms[i];
+                    classCounts.get(c).assigned_time = times[j].id;
+                    classCounts.get(c).assigned_room = rooms[i];
+                }
+                
+            
                 k++;
                 if (k >= total_classes)
                     return;
@@ -350,6 +368,7 @@ public class Schedule {
     }
 
     public static void main(String[] args) {
+        long startTime = System.currentTimeMillis();
         if (args.length != 2) {
             System.out.println("Usage: <prefences> <constraints>");
             return;
@@ -363,6 +382,26 @@ public class Schedule {
         for (int i = 0; i < s.classCounts.size(); i++) {
             if(s.classCounts.get(i).toString() == null) continue;
             System.out.println(s.classCounts.get(i).toString());
+        }
+        long stopTime = System.currentTimeMillis();
+        s.runTime = stopTime - startTime;
+        try { 
+            String sub = constraints.substring(25);
+    
+
+            String sub2 = sub.split("\\.", 2)[0];
+
+
+            String[] sub3 = sub2.split("_");
+            String filename = "../runtime/runtime_" + sub3[0]  + "_"+ sub3[1] + ".txt";
+            BufferedWriter f_writer = new BufferedWriter(new FileWriter(filename));
+            String runtime =  Long.toString(s.runTime);
+            f_writer.write("Time take: " + runtime);
+            
+            f_writer.close();
+        }
+         catch (IOException e) {
+            System.out.print(e.getMessage());
         }
     }
 }

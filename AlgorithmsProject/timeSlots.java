@@ -28,7 +28,10 @@ public class timeSlots {
          return false;
 
       for (int i = 0; i < this.profs_teaching.size(); i++) {
+         //System.out.println("Professor: " + profs_teaching.get(i) + " = " + prof_id + ", " + prof_id.equals(this.profs_teaching.get(i)));
+
          if (prof_id.equals(this.profs_teaching.get(i))) {
+            //System.out.println("Professor " + profs_teaching.get(i) + " is already teaching at time " + this.id);
             return true;
          }
       }
