@@ -26,6 +26,8 @@ readConstraints($cfile);
 my $numstudents;
 my @allStudents;
 my %origStudentPrefs = ();
+my $preferencesSize;
+my $total_preferenceSize = 0;
 readPrefs($pfile);
 
 open (SCHED, $sfile) || die "Can't open file: $sfile\n";
@@ -151,8 +153,8 @@ while (<SCHED>) {
 
 print "Schedule is valid.\n";
 print "Student preferences value: ", $stuprefs, "\n";
-print "Maximum value: ", $numstudents * 4, "\n";
-print "% Optimality ", $stuprefs / ($numstudents * 4);
+print "Maximum value: ", $total_preferenceSize, "\n";
+print "% Optimality ", $stuprefs / ($total_preferenceSize);
 
 exit 0;
 
@@ -211,8 +213,11 @@ sub readPrefs {
 		if (/^(\d+)\t(.*)$/) {
 			my $stu = $1;
 			my @prefs = split(/ /, $2);
+			$preferencesSize = @prefs;
 			$origStudentPrefs{$stu} = \@prefs;
 		}
+
+		$total_preferenceSize += $preferencesSize;
 	}
 
 	return;

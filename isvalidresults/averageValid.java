@@ -121,9 +121,9 @@ public class averageValid {
             numProfessors.add(profs.get(0));
         }
 
-        System.out.println("no. \t Classes \t Students \t Times \t Rooms \t Time(ms) \t Best \t Experimental \t % Optimality");
+        System.out.println("no. \t Classes \t Professors \t Students \t Times \t Rooms \t Time(ms) \t Best \t Experimental \t % Optimality");
         for(int i = 1; i <= 100; i++){
-            System.out.println(i + " \t " + numCourses.get(i-1) + " \t " + numStudents.get(i-1) + " \t " + numTimeslots.get(i-1) + " \t " + numRooms.get(i-1) + " \t " + runtimeValues.get(i-1) + " \t " + maxValues.get(i-1) + " \t " +  prefValues.get(i-1) + " \t " + (prefValues.get(i-1)/maxValues.get(i-1)));
+            System.out.println(i + " \t " + numCourses.get(i-1) + " \t " + numProfessors.get(i-1) + " \t " + numStudents.get(i-1) + " \t " + numTimeslots.get(i-1) + " \t " + numRooms.get(i-1) + " \t " + runtimeValues.get(i-1) + " \t " + maxValues.get(i-1) + " \t " +  prefValues.get(i-1) + " \t " + (prefValues.get(i-1)/maxValues.get(i-1)));
         }
          
     }
