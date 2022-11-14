@@ -216,6 +216,7 @@ public class Schedule {
 
     }
 
+
     /**
     * Returns index in times array that matches with the id needed
     */
@@ -231,8 +232,8 @@ public class Schedule {
     return -2; // ERROR
     }
 
-    public void makeSchedule() {
 
+    public void makeSchedule() {
         int k = 0;
         String prof_id = null;
         for (int i = 0; i < rooms.length; i++) {
@@ -366,14 +367,15 @@ public class Schedule {
         long stopTime = System.currentTimeMillis();
         s.runTime = stopTime - startTime;
         try { 
-            String sub = constraints.substring(25);
-    
 
+            //Trying to parse ../testfiles_bmc/cfall2000.txt
+            String sub = constraints.substring(17);
+            //cfall2000.txt
+            
             String sub2 = sub.split("\\.", 2)[0];
+            //cfall2000
 
-
-            String[] sub3 = sub2.split("_");
-            String filename = "../runtime/runtime_" + sub3[0]  + "_"+ sub3[1] + ".txt";
+            String filename = "../runtime_bmc/runtime_" + sub2 + ".txt";
             BufferedWriter f_writer = new BufferedWriter(new FileWriter(filename));
             String runtime =  Long.toString(s.runTime);
             f_writer.write("Time take: " + runtime);
