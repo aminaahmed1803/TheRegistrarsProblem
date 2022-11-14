@@ -13,8 +13,11 @@ java Schedule <preference-file.txt> <constraints-file.txt> >> <schedule-file.txt
 ```
 
 Note:
+
 Format as follows
+
 <preference-file.txt> needs to be formatted as "../testfiles/studentprefs_i_j.txt" where 1 <= i <= 100 and 1 <= j <= 10
+
 <constraints-file.txt> needs to be formatted as "../testfiles/constraints_i_j.txt" where 1 <= i <= 100 and 1 <= j <= 10
 
 This will produce a schedule in <schedule-file.txt> in AlgorithmsProject directory
@@ -36,8 +39,11 @@ java Schedule <preference-file.txt> <constraints-file.txt> >> <schedule-file.txt
 ```
 
 Note:
+
 Format as follows
+
 <preference-file.txt> needs to be formatted as "../testfiles_bmc/sfall2000.txt" where sfall2000.txt is the preferences file
+
 <constraints-file.txt> needs to be formatted as "../testfiles_bmc/cfall2000.txt" where cfall2000.txt is the constraints file
 
 ## To test for validity of the schedule from bmc data
