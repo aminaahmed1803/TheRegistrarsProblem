@@ -1,4 +1,4 @@
 Schedule is valid.
-Student preferences value: 1771
-Maximum value: 1816
-% Optimality 0.975220264317181
+Student preferences value: 2111
+Maximum value: 2316
+% Optimality 0.911485319516408
